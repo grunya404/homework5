@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homework-user-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homework-user
+  template:
+    metadata:
+      labels:
+        app: homework-user
+    spec:
+      containers:
+        - name: homework-user
+          imagePullPolicy: Always
+          image: grunya404/homework5:latest
+          env:
+            - name: local
+              value: "1"
+
+          ports:
+            - name: http
+              containerPort: 8080
